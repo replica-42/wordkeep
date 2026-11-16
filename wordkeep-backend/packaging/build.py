@@ -298,6 +298,8 @@ def fingerprint() -> str:
         )
     state = hashlib.sha256()
     state.update(f"{sys.platform}:{platform.machine().lower()}".encode())
+    identity = os.environ.get("WORDKEEP_CODESIGN_IDENTITY", "").strip()
+    state.update(identity.encode())
     for path in sorted(files):
         state.update(path.relative_to(ROOT).as_posix().encode())
         state.update(bytes.fromhex(digest(path)))

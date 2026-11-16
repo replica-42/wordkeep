@@ -305,7 +305,10 @@ def test_clean_preserves_development_environment_and_source_models(
     assert all((builder.ROOT / name).exists() != all_outputs for name in outputs)
 
 
-def test_fingerprint_tracks_build_inputs_but_not_generated_bytecode(builder):
+def test_fingerprint_tracks_build_inputs_but_not_generated_bytecode(
+    builder, monkeypatch
+):
+    monkeypatch.delenv("WORDKEEP_CODESIGN_IDENTITY", raising=False)
     for name in (
         "pyproject.toml",
         "uv.lock",
@@ -319,6 +322,13 @@ def test_fingerprint_tracks_build_inputs_but_not_generated_bytecode(builder):
     src.mkdir(parents=True)
     (src / "__init__.py").write_text("version = 1", encoding="utf-8")
     original = builder.fingerprint()
+    monkeypatch.setenv("WORDKEEP_CODESIGN_IDENTITY", "A" * 40)
+    signed = builder.fingerprint()
+    assert signed != original
+    monkeypatch.setenv("WORDKEEP_CODESIGN_IDENTITY", "B" * 40)
+    assert builder.fingerprint() not in (original, signed)
+    monkeypatch.delenv("WORDKEEP_CODESIGN_IDENTITY")
+    assert builder.fingerprint() == original
     (src / "__pycache__").mkdir()
     (src / "__pycache__/bytecode.pyc").write_bytes(b"generated")
     assert builder.fingerprint() == original

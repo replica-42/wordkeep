@@ -10,10 +10,10 @@ npm --prefix wordkeep-app ci
 
 按当前平台选择构建命令：
 
-| 命令 | 产物 |
-| --- | --- |
-| `npm run package` | 当前平台的应用目录 |
-| `npm run dist:mac` | macOS arm64 DMG 安装包 |
+| 命令               | 产物                    |
+| ------------------ | ----------------------- |
+| `npm run package`  | 当前平台的应用目录      |
+| `npm run dist:mac` | macOS arm64 DMG 安装包  |
 | `npm run dist:win` | Windows x64 NSIS 安装包 |
 
 后端由 `wordkeep-backend/packaging/build.py` 使用独立的 `wordkeep-backend/build/venv/` 构建；
@@ -60,10 +60,19 @@ npm run test:build
 
 ## 签名
 
-macOS 使用 `CSC_LINK`、`CSC_KEY_PASSWORD`；公证使用 `APPLE_ID`、
-`APPLE_APP_SPECIFIC_PASSWORD` 和 `APPLE_TEAM_ID`。
-`WORDKEEP_CODESIGN_IDENTITY` 指定 PyInstaller 的签名身份。
-Windows 使用 `WIN_CSC_LINK`、`WIN_CSC_KEY_PASSWORD`。
+macOS 使用 `CSC_LINK` 提供 Developer ID Application 证书（包含私钥的 P12 文件路径、
+HTTPS 地址或 Base64 内容），`CSC_KEY_PASSWORD` 提供证书密码。
+构建入口先将证书导入临时钥匙串，再使用同一身份构建 Python 后端和 Electron 应用；
+构建结束后恢复钥匙串列表并清理临时证书。单一有效身份自动选择，
+`WORDKEEP_CODESIGN_IDENTITY` 可指定证书完整名称或 SHA-1 指纹。
+本地也可通过该变量选择已安装在钥匙串中的证书。
+
+公证使用 `APPLE_ID`、`APPLE_APP_SPECIFIC_PASSWORD` 和 `APPLE_TEAM_ID`。
+Windows 使用 `WIN_CSC_LINK`、`WIN_CSC_KEY_PASSWORD` 提供 PFX/P12 证书和密码，
+由 electron-builder 签署应用和安装包。
+
+签名参数按平台隔离。空参数按未配置处理，默认生成未使用开发者证书签名的版本。
+提供有效证书后自动签名，签名身份变化时重新构建相关产物。
 
 ## GitHub Actions
 
