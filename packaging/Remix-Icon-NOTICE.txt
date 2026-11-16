@@ -1,0 +1,7 @@
+Remix Icon License v1.0 (January 2026)
+Copyright (c) 2017–2026 Remix Design
+
+Wordkeep uses icons from Remix Icon as functional user-interface elements.
+The icons remain governed by Remix Icon License v1.0.
+Full license: https://github.com/Remix-Design/RemixIcon/blob/master/License
+Project: https://remixicon.com

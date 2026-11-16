@@ -1,0 +1,49 @@
+name: Build installers
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: macos-15
+            target: mac
+          - runner: windows-2025
+            target: win
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '26.13.1'
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: '0.13.8'
+      - name: Install release tools
+        run: npx --yes npm@12.2.2 ci
+      - name: Install frontend dependencies
+        working-directory: wordkeep-app
+        run: npx --yes npm@12.2.2 ci
+      - name: Check build stage reuse and cleanup
+        run: npx --yes npm@12.2.2 run test:build
+      - name: Build installer
+        run: npx --yes npm@12.2.2 run dist:${{ matrix.target }}
+        env:
+          CSC_LINK: ${{ secrets.CSC_LINK }}
+          CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
+          WIN_CSC_LINK: ${{ secrets.WIN_CSC_LINK }}
+          WIN_CSC_KEY_PASSWORD: ${{ secrets.WIN_CSC_KEY_PASSWORD }}
+          WORDKEEP_CODESIGN_IDENTITY: ${{ secrets.WORDKEEP_CODESIGN_IDENTITY }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wordkeep-app-${{ matrix.target }}
+          path: |
+            release/*.dmg
+            release/*.exe
+          if-no-files-found: error

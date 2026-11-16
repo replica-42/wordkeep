@@ -1,0 +1,62 @@
+appId: com.replica42.wordkeep
+productName: 拾言 Wordkeep
+executableName: wordkeep-app
+artifactName: wordkeep-app-${version}-${os}-${arch}.${ext}
+directories:
+  app: wordkeep-app
+  output: release
+  buildResources: wordkeep-app/resources
+asar: true
+compression: normal
+# Vite bundles the frontend runtime dependencies.
+npmRebuild: false
+electronDist: wordkeep-app/node_modules/electron/dist
+beforePack: ../packaging/check-resources.cjs
+files:
+  - out/**/*
+  - package.json
+  - resources/icon.png
+  # Main and preload use Electron and Node; renderer dependencies are in out/.
+  - "!**/node_modules/**/*"
+extraResources:
+  - from: build/app-resources/licenses
+    to: licenses
+  - from: wordkeep-backend/dist/wordkeep-backend
+    to: wordkeep-backend
+    filter:
+      - "**/*"
+  # Include root license notices from the local Electron distribution.
+  - from: wordkeep-app/node_modules/electron/dist/LICENSE
+    to: licenses/electron/LICENSE
+  - from: wordkeep-app/node_modules/electron/dist/LICENSES.chromium.html
+    to: licenses/electron/LICENSES.chromium.html
+mac:
+  icon: wordkeep-app/resources/icon.icns
+  category: public.app-category.graphics-design
+  minimumSystemVersion: "14.0"
+  hardenedRuntime: true
+  signIgnore:
+    - "/Contents/Resources/wordkeep-backend/data/"
+    - "/Contents/Resources/licenses/"
+    - '\.(pyc|pyo|py|pt|zip|whl|npz|npy|pkl)$'
+  target:
+    - target: dmg
+      arch: [arm64]
+dmg:
+  format: UDZO
+  writeUpdateInfo: false
+win:
+  icon: wordkeep-app/resources/icon.ico
+  target:
+    - target: nsis
+      arch: [x64]
+nsis:
+  include: packaging/installer.nsh
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  perMachine: false
+  allowElevation: false
+  packElevateHelper: false
+  deleteAppDataOnUninstall: true
+  differentialPackage: false
+  useZip: true

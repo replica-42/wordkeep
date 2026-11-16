@@ -14,3 +14,9 @@ htmlcov/
 .env.*
 /wordkeep-backend/data/hanlp/
 /doc/
+
+node_modules/
+/wordkeep-app/out/
+/wordkeep-app/coverage/
+*.tsbuildinfo
+/release/

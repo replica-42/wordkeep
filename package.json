@@ -1,0 +1,30 @@
+{
+  "name": "wordkeep",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Wordkeep application build orchestration",
+  "author": {
+    "name": "replica42",
+    "email": "replica42@outlook.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=26.0.0",
+    "npm": ">=12.0.0"
+  },
+  "packageManager": "npm@12.2.2",
+  "scripts": {
+    "package": "node packaging/build.cjs package",
+    "dist:mac": "node packaging/build.cjs dist mac",
+    "dist:win": "node packaging/build.cjs dist win",
+    "test:build": "node --test packaging/tests/*.test.cjs",
+    "clean": "node packaging/clean.cjs",
+    "clean:all": "node packaging/clean.cjs --all"
+  },
+  "devDependencies": {
+    "electron-builder": "26.18.0"
+  },
+  "allowScripts": {
+    "electron-winstaller": false
+  }
+}

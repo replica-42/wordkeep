@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+<title>拾言 Wordkeep 应用图标</title>
+<rect x="80" y="80" width="864" height="864" rx="192" fill="#f5f1e8"/>
+<path d="M288 306 Q288 272 322 272 H692 Q736 272 736 316 V710 Q736 754 692 754 H334 Q288 754 288 708 Z" fill="#28573f"/>
+<path d="M334 754 Q288 754 288 708 Q288 670 334 670 H736 V710 Q736 754 692 754 Z" fill="#1c432e"/>
+<path d="M339 698 H697 V724 H339 Q322 724 322 711 Q322 698 339 698Z" fill="#e5e6cf"/>
+<rect x="352" y="370" width="156" height="48" rx="8" fill="#f8f6ee"/>
+<rect x="528" y="370" width="144" height="48" rx="8" fill="#b7c9ad"/>
+<rect x="352" y="448" width="246" height="48" rx="8" fill="#f8f6ee"/>
+<rect x="352" y="526" width="110" height="48" rx="8" fill="#b7c9ad"/>
+<rect x="482" y="526" width="190" height="48" rx="8" fill="#f8f6ee"/>
+<rect x="558" y="208" width="154" height="64" rx="12" fill="#bd8d44"/>
+</svg>

@@ -17,3 +17,9 @@ repos:
         language: system
         files: ^wordkeep-backend/(src/.*\.pyi?$|pyproject\.toml$)
         pass_filenames: false
+      - id: app-check
+        name: TypeScript and Biome
+        entry: npm --prefix wordkeep-app run check
+        language: system
+        files: ^wordkeep-app/
+        pass_filenames: false
