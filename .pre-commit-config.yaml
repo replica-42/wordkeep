@@ -1,0 +1,19 @@
+repos:
+  - repo: local
+    hooks:
+      - id: ruff-check
+        name: Ruff check
+        entry: uv run --locked --project wordkeep-backend ruff check --fix
+        language: system
+        types_or: [python, pyi]
+      - id: ruff-format
+        name: Ruff format
+        entry: uv run --locked --project wordkeep-backend ruff format
+        language: system
+        types_or: [python, pyi]
+      - id: mypy
+        name: mypy
+        entry: uv run --locked --project wordkeep-backend mypy --config-file wordkeep-backend/pyproject.toml wordkeep-backend/src
+        language: system
+        files: ^wordkeep-backend/(src/.*\.pyi?$|pyproject\.toml$)
+        pass_filenames: false

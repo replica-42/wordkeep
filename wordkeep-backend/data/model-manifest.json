@@ -1,0 +1,47 @@
+[
+  {
+    "resource": "mtl/close_tok_pos_ner_srl_dep_sdp_con_electra_small_20220626_175100.zip",
+    "url": "https://ftp.hankcs.com/hanlp/mtl/close_tok_pos_ner_srl_dep_sdp_con_electra_small_20220626_175100.zip",
+    "download_bytes": 105746854,
+    "unpacked_bytes": 114304338,
+    "sha256": "37bc07aa114104248c1a3cb4f32765eeb4d6cc7ff22fcff1505c3c27217375a1",
+    "files": {
+      "mtl/close_tok_pos_ner_srl_dep_sdp_con_electra_small_20220626_175100/con_vocabs.json": "4840090e35885cb73442160748797ec17549a7d9488f0a3232b29f196356e78e",
+      "mtl/close_tok_pos_ner_srl_dep_sdp_con_electra_small_20220626_175100/config.json": "3fb7041fb91c680cb7a1ceeb59ea554eab0931eb3ecd0ccb5e03c9385ad2092c",
+      "mtl/close_tok_pos_ner_srl_dep_sdp_con_electra_small_20220626_175100/dep_vocabs.json": "eff96eeac686092de603b9075fe4a556f25ff5d19a6126f896bbc013c945aa72",
+      "mtl/close_tok_pos_ner_srl_dep_sdp_con_electra_small_20220626_175100/model.pt": "b090e3ae29ec512fb1d25ddda541d36df5b1cf3f0b589747d360b631c2997ddc",
+      "mtl/close_tok_pos_ner_srl_dep_sdp_con_electra_small_20220626_175100/ner/msra_vocabs.json": "d86ad6fa4eb40a0aa2a590be7e0f8713b9d90213e289fa65ec1ed8956a266e66",
+      "mtl/close_tok_pos_ner_srl_dep_sdp_con_electra_small_20220626_175100/ner/ontonotes_vocabs.json": "2d9358e86fe38b18e75ecf321d07bdb1064131ecfe68b8b692a2ec515d2544a6",
+      "mtl/close_tok_pos_ner_srl_dep_sdp_con_electra_small_20220626_175100/ner/pku_vocabs.json": "051a00a713bfab9f16d954bbd8cdbdc2fc4351f6fc1b2bc9efbd97bc81a872f9",
+      "mtl/close_tok_pos_ner_srl_dep_sdp_con_electra_small_20220626_175100/pos/863_vocabs.json": "1c887ab5547327b5074cc2f0d8c61367df4bd1208c6b7269838f54681da99cea",
+      "mtl/close_tok_pos_ner_srl_dep_sdp_con_electra_small_20220626_175100/pos/ctb_vocabs.json": "038a012c1028a775f4a32b9cae60ec7ccd2e48220181132dec44f45d3a489a69",
+      "mtl/close_tok_pos_ner_srl_dep_sdp_con_electra_small_20220626_175100/pos/pku_vocabs.json": "42a7ee7111091928d30ac5cb7fa9fb2c22fce672c72d00aa33ea167f3e2ef7f2",
+      "mtl/close_tok_pos_ner_srl_dep_sdp_con_electra_small_20220626_175100/sdp_vocabs.json": "431c83a2020b17912f88181197fbba13585a79d0f8cab8df9b9be94c29836ab8",
+      "mtl/close_tok_pos_ner_srl_dep_sdp_con_electra_small_20220626_175100/srl_vocabs.json": "42c520f8c50f666c3599468363c9522aff9d12808cea047ef3b8fe9b777b9fa2",
+      "mtl/close_tok_pos_ner_srl_dep_sdp_con_electra_small_20220626_175100/tok/coarse_vocabs.json": "679e8142976e79225155c36b17920a9a353f21ac70c4b82c1880b71167818035",
+      "mtl/close_tok_pos_ner_srl_dep_sdp_con_electra_small_20220626_175100/tok/fine_vocabs.json": "42e6ffd43834d931e6bdf1a5bd47d66fabd059775562ceb6ef1fdd944a4271b0"
+    }
+  },
+  {
+    "resource": "transformers/electra_zh_small_20210706_125427.zip",
+    "url": "https://ftp.hankcs.com/hanlp/transformers/electra_zh_small_20210706_125427.zip",
+    "download_bytes": 42215,
+    "unpacked_bytes": 114265,
+    "sha256": "0ba4fef7aaa3354986fe7a6865c85875e4dad6dd5b2de32f94a4c9553dc7c617",
+    "files": {
+      "transformers/electra_zh_small_20210706_125427/config.json": "baca81bc1b187003480015d15215c1a37c306bdf10faf00f53ac99c4de437562",
+      "transformers/electra_zh_small_20210706_125427/tokenizer_config.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "transformers/electra_zh_small_20210706_125427/vocab.txt": "45bbac6b341c319adc98a532532882e91a9cefc0329aa57bac9ae761c27b291c"
+    }
+  },
+  {
+    "resource": "utils/char_table_20210602_202632.json.zip",
+    "url": "https://ftp.hankcs.com/hanlp/utils/char_table_20210602_202632.json.zip",
+    "download_bytes": 27323,
+    "unpacked_bytes": 100297,
+    "sha256": "1576a870ee9e43056485677edf82f615e68df66fb1afc6f06964cd6ac35f52d6",
+    "files": {
+      "utils/char_table_20210602_202632.json": "a7f1e97e037769f74ed7e232ea54dc06c6c6b815610b19b3b0ccadff094c2ccb"
+    }
+  }
+]

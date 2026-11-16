@@ -1,0 +1,17 @@
+[
+  {
+    "file": "CC-BY-NC-SA-4.0.txt",
+    "source": "https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.txt",
+    "sha256": "e66c269d4819aaab34b49ef5220c4ddab6756f21bb5180761a4eb8561f2b7bbd"
+  },
+  {
+    "file": "CPython-3.14-LICENSE.txt",
+    "source": "https://raw.githubusercontent.com/python/cpython/v3.14.10/LICENSE",
+    "sha256": "b0e25a78cffb43f4d92de8b61ccfa1f1f98ecbc22330b54b5251e7b6ba010231"
+  },
+  {
+    "file": "Apache-2.0.txt",
+    "source": "https://github.com/hankcs/HanLP/blob/master/LICENSE",
+    "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  }
+]
