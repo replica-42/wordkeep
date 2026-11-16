@@ -76,11 +76,19 @@ Windows 使用 `WIN_CSC_LINK`、`WIN_CSC_KEY_PASSWORD` 提供 PFX/P12 证书和�
 
 ## GitHub Actions
 
-将 `.github/workflows/build.yml` 提交并推送到默认分支，在仓库的
-Actions → Build installers → Run workflow 中手动启动构建。
-也可在本地执行 `gh workflow run build.yml`。触发方式为 `workflow_dispatch`。
+推送版本 tag 后，工作流自动构建 macOS arm64 和 Windows x64 安装包。
+两个平台都成功后，安装包上传到该 tag 对应的 GitHub Release，并自动生成发布说明。
+应用版本和安装包文件名使用 tag 去掉 `v` 前缀后的版本号；带预发布后缀的
+版本（如 `v0.2.0-rc.1`）标记为 Pre-release。
 
-工作流分别构建 macOS arm64 和 Windows x64 安装包，
-结果位于该次运行的 Artifacts：`wordkeep-app-mac` 和 `wordkeep-app-win`。
-需要签名时，在仓库的 Settings → Secrets and variables → Actions
-添加上述同名签名变量。
+```sh
+git tag v0.2.0
+git push origin v0.2.0
+```
+
+手动构建可在 Actions → Build installers → Run workflow 中启动，
+或执行 `gh workflow run build.yml`。手动构建的产物保存在该次运行的 Artifacts；
+推送版本 tag 触发的构建同时保留 Artifacts：`wordkeep-app-mac` 和 `wordkeep-app-win`。
+
+Release 发布使用工作流内置的 `GITHUB_TOKEN`。需要签名时，在仓库的
+Settings → Secrets and variables → Actions 添加上述同名签名变量。

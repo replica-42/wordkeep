@@ -1,5 +1,8 @@
 name: Build installers
 on:
+  push:
+    tags:
+      - 'v[0-9]*.[0-9]*.[0-9]*'
   workflow_dispatch:
 permissions:
   contents: read
@@ -27,6 +30,14 @@ jobs:
       - name: Install frontend dependencies
         working-directory: wordkeep-app
         run: npx --yes npm@12.2.2 ci
+      - name: Set application version from tag
+        if: startsWith(github.ref, 'refs/tags/v')
+        shell: bash
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: >-
+          npx --yes npm@12.2.2 --prefix wordkeep-app version "${RELEASE_TAG#v}"
+          --no-git-tag-version --allow-same-version --ignore-scripts
       - name: Check build stage reuse and cleanup
         run: npx --yes npm@12.2.2 run test:build
       - name: Build installer
@@ -47,3 +58,25 @@ jobs:
             release/*.dmg
             release/*.exe
           if-no-files-found: error
+  release:
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: wordkeep-app-*
+          path: release
+          merge-multiple: true
+      - name: Publish installers
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          generate_release_notes: true
+          prerelease: ${{ contains(github.ref_name, '-') }}
+          fail_on_unmatched_files: true
+          files: |
+            release/*.dmg
+            release/*.exe
